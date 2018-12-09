@@ -1,0 +1,59 @@
+table.board{
+  border-collapse: collapse;
+  border-top: 3px solid #000000;
+  border-left: 3px solid #000000;
+}
+
+td {
+  padding: 0px;
+  height:36px;
+  width:36px
+}
+
+td > input {
+  height: 30px;
+  width: 30px;
+  font-size: 28px;
+  text-align: center;
+}
+
+td.nn {
+  border-bottom: 1px solid #000000;
+  border-right: 1px solid #000000;
+}
+
+td.rn {
+  border-bottom: 1px solid #000000;
+  border-right: 3px solid #000000;
+}
+
+td.rb {
+  border-bottom: 3px solid #000000;
+  border-right: 3px solid #000000;
+}
+
+td.nb {
+  border-bottom: 3px solid #000000;
+  border-right: 1px solid #000000;
+}
+
+table#flagsTable td.masu {
+  font-size: 10px;
+  line-height: 10px;
+  text-align: center;
+}
+
+table#answerTable td.masu {
+  font-size: 28px;
+  line-height: 28px;
+  text-align: center;
+}
+
+div.tableWrap {
+  display: inline-block;
+}
+
+button#sendButton {
+  width: 150px;
+  font-size: 28px;
+}

@@ -1,7 +1,7 @@
 import * as blockIndexHelper from './blockIndexHelper';
 import { IBlockRange } from '../models/blockRangeModel';
 
-export const deleteByRule = (board: number[][] ,flags: boolean[][][], rowIndex: number, columunIndex: number, fixedNumber): void => {
+export const deleteByRule = (board: number[][] ,flags: boolean[][][], rowIndex: number, columunIndex: number, fixedNumber: number): void => {
   for (let column = 0; column < board[rowIndex].length; column++) {
     flags[rowIndex][column][fixedNumber] = false;
   }
@@ -23,8 +23,8 @@ export const checkFixed = (board: number[][] ,flags: boolean[][][]): boolean => 
   let changedFlag = false;
   for (let row = 0; row < board.length; row++) {
     for (let column = 0; column < board[row].length; column++) {
-      changedFlag = flags[row][column].filter((flag: boolean) => flag).length === 1;
-      if (changedFlag) {
+      if (board[row][column] === -1 && flags[row][column].filter((flag: boolean) => flag).length === 1) {
+        changedFlag = true;
         board[row][column] = flags[row][column].findIndex((flag: boolean) => flag);
       }
     }
@@ -36,7 +36,7 @@ export const checkByRule = (board: number[][] ,flags: boolean[][][]): boolean =>
   for (let row = 0; row < board.length; row++) {
     for (let column = 0; column < board[row].length; column++) {
       if(board[row][column] > -1){
-        deleteByRule(board, flags, row, column, board);
+        deleteByRule(board, flags, row, column, board[row][column]);
       }
     }
   }
