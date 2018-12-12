@@ -29,15 +29,21 @@ function send(obj) {
     success: function(json_data) {
       for (let i = 0; i < json_data.board.length; i++) {
         for (let j = 0; j < json_data.board[i].length; j++) {
-          var inner = '';
+          var inner = '<table class="eachFlags">';
           for (let k = 0; k < json_data.flags[i][j].length; k++) {
-            if (k > 0 && k%3 === 0){
-              inner += '<br>';
+            if (k%3 === 0){
+              inner += '<tr>';
             }
+            inner += '<td>'
             if (json_data.flags[i][j][k]) {
               inner += (k + 1).toString();
             }
+            inner += '</td>'
+            if (k%3 === 2){
+              inner += '</tr>';
+            }
           }
+          inner += '</table>';
           $('#flagsTable td.' + i + j).html(inner);
 
           if(json_data.board[i][j] > -1){
