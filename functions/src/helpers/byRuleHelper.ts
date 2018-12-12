@@ -10,6 +10,10 @@ export const deleteByRule = (board: number[][] ,flags: boolean[][][], rowIndex: 
     flags[row][columunIndex][fixedNumber] = false;
   }
 
+  for (let targetNum = 0; targetNum < flags[rowIndex][columunIndex].length; targetNum++) {
+    flags[rowIndex][columunIndex][targetNum] = false;
+  }
+
   const blockRange: IBlockRange = blockIndexHelper.getBlockRange(rowIndex, columunIndex);
 
   for (let row = blockRange.row.start; row < blockRange.row.end; row++) {
@@ -19,7 +23,7 @@ export const deleteByRule = (board: number[][] ,flags: boolean[][][], rowIndex: 
   }
 }
 
-export const checkFixed = (board: number[][] ,flags: boolean[][][]): boolean => {
+const checkFixed = (board: number[][] ,flags: boolean[][][]): boolean => {
   let changedFlag = false;
   for (let row = 0; row < board.length; row++) {
     for (let column = 0; column < board[row].length; column++) {

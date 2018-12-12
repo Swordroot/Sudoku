@@ -8,7 +8,6 @@ app.use(cors({ origin: true }));
 app.post('/solve', (req, res) => {
   const board: number[][] = req.body.board;
   const shifted: number[][] = board.map((row: number[]) => row.map((value: number) => value - 1));
-  console.log(shifted);
   const result = sudokuService.solve(shifted);
   res.json(result);
 });

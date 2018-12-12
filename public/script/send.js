@@ -22,10 +22,12 @@ function send(obj) {
 
   $.ajax({
     type:"post",
+    // url:"https://localhost:5000/sudoku-fa55e/us-central1/solve/solve",
     url:"https://us-central1-sudoku-fa55e.cloudfunctions.net/solve/solve",
     data:JSON.stringify({board: values}),
     contentType: 'application/json',
     dataType: "json",
+    timeout: 10000,
     success: function(json_data) {
       for (let i = 0; i < json_data.board.length; i++) {
         for (let j = 0; j < json_data.board[i].length; j++) {

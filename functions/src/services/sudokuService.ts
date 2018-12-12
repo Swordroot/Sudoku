@@ -1,4 +1,7 @@
 import * as byRuleHelper from '../helpers/byRuleHelper';
+import * as byLastOneHelper from '../helpers/byLastOneHelper';
+import * as byLast2Or3Helper from '../helpers/byLast2Or3InSameAreaHelper';
+import * as byBackTrackHelper from '../helpers/byBackTrackHelper';
 import { IResponse } from '../models/responseModel';
 
 export const solve = (board: number[][]): IResponse => {
@@ -16,7 +19,6 @@ export const solve = (board: number[][]): IResponse => {
       
     }
   }
-  console.log(flags);
   let boardChangedFlag = false;
   do {
     boardChangedFlag = false;
@@ -24,7 +26,19 @@ export const solve = (board: number[][]): IResponse => {
       boardChangedFlag = true;
       continue;
     }
+
+    if (byLastOneHelper.checkByLastOne(board, flags)) {
+      boardChangedFlag = true;
+      continue;
+    }
+
+    if (byLast2Or3Helper.checkByLast2Or3(board, flags)) {
+      boardChangedFlag = true;
+      continue;
+    }
   } while (boardChangedFlag)
+
+  byBackTrackHelper.backTrack(board, flags);
 
   return {
     board,

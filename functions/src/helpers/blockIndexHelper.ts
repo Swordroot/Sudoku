@@ -11,3 +11,12 @@ export const getBlockRange = (rowIndex: number, columnIndex: number): IBlockRang
     }
   }
 }
+
+export const isSameBlock = (blockRange1: IBlockRange, blockRange2: IBlockRange) => {
+  return (
+    blockRange1.row.start === blockRange2.row.start &&
+    blockRange1.row.end === blockRange2.row.end &&
+    blockRange1.column.start === blockRange2.column.start &&
+    blockRange1.column.end === blockRange2.column.end 
+  );
+}
